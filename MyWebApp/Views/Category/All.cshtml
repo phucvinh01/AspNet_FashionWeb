@@ -1,0 +1,94 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<MyWebApp.Models.Product>
+
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<style>
+    .wh {
+        width: 200px;
+        height: 240px;
+    }
+
+    .text-overlow {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .heightMaxImg {
+        height: 150px;
+    }
+
+    .fs-13px {
+        font-size: 13px;
+    }
+
+    .fs-12px {
+        font-size: 12px;
+    }
+
+    .element {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .card-hover:hover {
+        box-shadow: 2px 2px 2px 2px gray;
+       padding:10px;
+        transition:ease-in 0.3s;
+    }
+</style>
+
+@section all
+{
+    <div class="container">
+        <div class="text-end mb-2">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle font-monospace" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sắp xếp
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="/category/SortOrderBy" name="OrderBy">Giá: Tăng dần</a></li>
+                    <li><a class="dropdown-item" href="/category/SortOrderByDes" name="OrderByDescending">Giá: Giảm dần</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container ">
+            <div class="row justify-content-around">
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-2 m-1">
+                        <a href="/product/detailstring/@item.ProductID" class="card nav-link text-center wh card-hover">
+                            <img src="~/Img/@item.ImgUrl" class="card-img-top heightMaxImg" alt="cap1">
+                            <div class="card-body">
+                                <p class="element fs-13px">@item.ProductName</p>
+                                <p class="text-muted fs-12px"><span>@item.Price</span>.000 VND</p>
+                            </div>
+                        </a>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <td colspan="9" class="pagination text-center">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/category/all/?page=@i">@i</a>
+                </li>
+
+            }
+        </ul>
+    </td>
+
+}

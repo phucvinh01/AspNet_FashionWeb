@@ -1,0 +1,332 @@
+﻿
+@{
+    ViewBag.Title = "API";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+
+<style>
+   
+</style>
+<div class="container">
+
+
+    <button type="submit" id="btnGetProduct" class="btn btn-primary">Get Product</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertNewItem">
+        Insert
+    </button>
+    <table class="table table-bordered productTable">
+    </table>
+
+
+
+
+
+    <!-- Modal -->
+    @*//Detail*@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row border-bottom">
+                        <div class="col-3 fw-bolder">Product</div>
+                        <div class="col-3 fw-bolder">Price</div>
+                        <div class="col-3 fw-bolder">Description</div>
+                        <div class="col-3 fw-bolder">Img</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><span id="name"></span></div>
+                        <div class="col-3"><span id="price"></span></div>
+                        <div class="col-3"><span id="desr"></span></div>
+                        <div class="col-3"><span id="img"></span></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*//Edit*@
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" name="ProductID" , id="ProductIDEdit" />
+                    </div>
+
+                    <div class="form-floating p-2">
+                        <input type="text" name="ProductName" class="form-control" placeholder="ProductNameEdit" id="ProductNameEdit" />
+                        <label for="ProductName">ProductName</label>
+                    </div>
+                    <div class="form-floating p-2">
+                        <input type="text" name="Price" class="form-control" placeholder="Price" id="PriceEdit" />
+                        <label for="Price">Price</label>
+                    </div>
+
+                    <div class="form-floating p-2">
+                        <textarea name="Description" class="form-control" placeholder="Description" id="DescEdit"> </textarea>
+                        <label for="ProductName">Description</label>
+                    </div>
+
+                    <input type="file" name="ImgUrl" class="form-control p-2" placeholder="Image" id="imgEdit" />
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btnEdit" >Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*//delete*@
+
+    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" name="ProductIDdel" , id="ProductIDdel" />
+                    </div>
+
+                    <div class="form-floating p-2">
+                        <input type="text" name="ProductName" class="form-control" placeholder="ProductNameEdit" id="ProductNamedel" />
+                        <label for="ProductName">ProductName</label>
+                    </div>
+                    <div class="form-floating p-2">
+                        <input type="text" name="Price" class="form-control" placeholder="Price" id="Pricedel" />
+                        <label for="Price">Price</label>
+                    </div>
+
+                    <div class="form-floating p-2">
+                        <textarea name="Description" class="form-control" placeholder="Description" id="Descdel"> </textarea>
+                        <label for="ProductName">Description</label>
+                    </div>
+
+                    <input type="file" name="ImgUrl" class="form-control p-2" placeholder="Image" id="imgEdel" />
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btndel" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*//Insert*@
+    <div class="modal fade" id="insertNewItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Insert</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating p-2">
+                        <input type="text" name="ProductName" class="form-control" placeholder="ProductName" id="ProductName" />
+                        <label for="ProductName">ProductName</label>
+                    </div>
+                    <div class="form-floating p-2">
+                        <input type="text" name="Price" class="form-control" placeholder="Price" id="Price" />
+                        <label for="Price">Price</label>
+                    </div>
+
+                    <div class="form-floating p-2">
+                        <textarea name="Description" class="form-control" placeholder="Description" id="Desc"> </textarea>
+                        <label for="ProductName">Description</label>
+                    </div>
+                    <input type="file" name="ImgUrl" class="form-control" placeholder=ImgUrl" id="ImgUrl" />
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btnInsert" data-bs-dismiss="modal">Insert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+    <script>
+        $('#btnGetProduct').click(() => {
+            $('.productTable').empty();
+            $('.productTable').append('<tr><td>ID</td ><td>Name</td><td>Price</td><td></td></tr>');
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: '/api/product',
+                    success: (repond) => {
+                        for (var i = 0; i <= repond.length; i++) {
+                            const productRow = repond[i];
+                            const strHTML =
+                                '<tr><td>' + productRow.ProductID + '</td><td>' + productRow.ProductName + '</td><td>' + productRow.Price + '</td><td><button type="button" class="btn" id="btndetail" data-bs-toggle="modal" data-bs-target="#exampleModal" data-detail="' + productRow.ProductID + '" > Detail</button> <button type="button" class="btn" id="btnedit" data-bs-toggle="modal" data-bs-target="#edit" data-detail="' + productRow.ProductID + '" > Edit </button > <button type="button" class="btn" id="btndel" data-bs-toggle="modal" data-bs-target="#delete" data-detail="' + productRow.ProductID + '" > Delete</button></td ></tr >';
+
+                            $('.productTable').append(strHTML);
+                        }
+                    },
+                    error: (err) => { console.log(err); }
+                }
+
+            )
+
+        })
+
+
+
+        $(document).on('click', '#btndetail', (event) => {
+            const detail = $(event.target).attr('data-detail');
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: `/api/product?id=${detail}`,
+                    success: (repond) => {
+
+                        $('#name').html(repond.ProductName);
+                        $('#price').html(repond.Price);
+                        $('#desr').html(repond.Description);
+                        $('#img').html(repond.ImgUrl);
+                    },
+                    error: (err) => { console.log(err); }
+
+                }
+            )
+        }
+        )
+
+
+
+
+        $(document).on('click', '#btnedit', (event) => {
+            const detail = $(event.target).attr('data-detail');
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: `/api/product?id=${detail}`,
+                    success: (repond) => {
+                        $('#ProductNameEdit').val(repond.ProductName);
+                        $('#PriceEdit').val(repond.Price);
+                        $('#DescEdit').val(repond.Description);
+                        $('#imgEdit').val(repond.ImgUrl);
+                    },
+                    error: (err) => { console.log(err); }
+
+                }
+            )
+        })
+
+        $('#btnEdit').click(() => {
+            const productID = $('#ProductIDEdit').val();
+            const productName = $('#ProductNameEdit').val();
+            const Price = $('#PriceEdit').val();
+            const Desc = $('#DescEdit').val();
+            const img = $('#imgEdit').val();
+            $.ajax({
+                type: 'PUT',
+                url: '/api/product',
+                data: {
+                    'ProductIDEdit': productID,
+                    'ProductNameEdit': productName,
+                    'PriceEdit': Price,
+                    'DescriptionEdit': Desc,
+                    'ImgUrlEdit': img
+                },
+                success: () => {
+                    $('#btnGetProduct').trigger()
+                },
+                error: (err) => { console.log(err); }
+            })
+        })
+
+
+
+
+        $(document).on('click', '#btndel', (event) => {
+            const detail = $(event.target).attr('data-detail');
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: `/api/product?id=${detail}`,
+                    success: (repond) => {
+                        $('ProductIDdel').val(repond.productID);
+                        $('#ProductNamedel').val(repond.ProductName);
+                        $('#Pricedel').val(repond.Price);
+                        $('#Descdel').val(repond.Description);
+                        $('#imgdel').val(repond.ImgUrl);
+                    },
+                    error: (err) => { console.log(err); }
+
+                }
+            )
+        })
+
+        
+
+
+
+        $('#btndel').click(() => {
+            const productID = $('#ProductIDdel').html();
+            $.ajax({
+                type: 'DELETE',
+                url: `/api/product?id=${productID}`,
+                success: () => {
+                    $('#btnGetProduct').trigger()
+                },
+                error: (err) => { console.log(err); }
+            })
+        })
+
+
+        
+
+
+        $('#btnInsert').click(() => {
+            const productName = $('#ProductName').val();
+            const Price = $('#Price').val();
+            const Desc = $('#Desc').val();
+            const img = $('#img').val();
+            $.ajax({
+                type: 'POST',
+                url: '/api/product',
+                data: {
+                    'ProductName': productName,
+                    'Price': Price,
+                    'Description': Desc,
+                    'ImgUrl': img
+                },
+                success: () => {
+                    $('#btnGetProduct').trigger()
+                },
+                error: (err) => { console.log(err); }
+            })
+        })
+
+
+
+       
+
+    </script>
+

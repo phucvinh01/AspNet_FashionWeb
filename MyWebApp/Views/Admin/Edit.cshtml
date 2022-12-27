@@ -1,0 +1,61 @@
+﻿@model MyWebApp.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+
+@section edit{
+    <div class="container col-8">
+        <section style="margin-top:100px ;margin-bottom:150px">                   
+                    <div class="row">
+                        <h4 class="fw-bolder  font-monospace col-11">Edit Product</h4>
+                        <a href="/admin/index" class="btn btn-close fw-bolder col-1 text-end"></a>
+                    </div>
+                    <form method="post" class="form-control p-2 align-items-center" action="/admin/EditProduct/@Model.ProductID">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="hidden" name="ProductID" value="@Model.ProductID" />
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(row => row.ProductName, new { @class = "form-control", placeholder = "ProductName", value = "ProductName" })
+                                    @Html.LabelFor(row => row.ProductName, "ProductName")
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(row => row.Price, new { @class = "form-control", placeholder = "Price", value = "Price" })
+                                    @Html.LabelFor(row => row.Price, "Price")                              
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(row => row.Description, new { @class = "form-control", placeholder = "Description", value = "Description" })
+                                    @Html.LabelFor(row => row.Description, "Description")
+                                </div>
+                                <div class="mb-3">
+                                    <select name="Category" class="form-control">
+                                        @foreach (var item in ViewBag.prod)
+                                        {
+                                            if (item.CategoryID == Model.ProductID)
+                                            {
+                                                <option value="@item.CategoryID" selected>@item.CategoryName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.CategoryID">@item.CategoryName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <img src="~/Img/@Model.ImgUrl" />
+                                <div class="form-floating mb-3">
+                                    <input type="file" class="form-control" name="ImgUrl" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="form-control mt-2 btn btn-secondary font-monospace" type="submit">Edit</button>
+                    </form>                     
+        </section>
+    </div>
+
+}
+

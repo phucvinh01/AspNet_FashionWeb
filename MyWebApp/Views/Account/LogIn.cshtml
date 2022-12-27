@@ -1,0 +1,59 @@
+﻿@model MyWebApp.ViewModel.LogInVM
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@section account
+{
+
+    <div class="container ">
+        <hr />
+        <section style="margin-top:50px ;margin-bottom:50px">
+            <div class="row justify-content-center">
+               
+                <div class="col-6">
+                    <img src="https://i.pinimg.com/originals/b0/3c/7a/b03c7af7372278bc2b6033314f258fed.jpg " class="img-thumbnail" />
+                </div>
+                <div class=" col-6 w-50 text-center border p-2 shadow form-control">
+
+                    @using (Html.BeginForm("LogInSuccsesded", "Account", FormMethod.Post))
+                    {
+                    <div class="p-3 mt-xxl-5">
+                        <h3 class="fw-bolder text-center font-monospace">LOGIN</h3>
+                        <div class="form-floating mb-3 mt-3">
+
+                            @Html.TextBoxFor(row => row.UserName, new { placeholder = "UserName", @class = "form-control ; font-monospace" })
+                            @Html.LabelFor(row => row.UserName, new { @class = "font-monospace" })
+                            @Html.ValidationMessageFor(row => row.UserName)
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.Password, new { placeholder = "Password", @class = "form-control  ; font-monospace", type = "password" })
+                            @Html.LabelFor(row => row.Password, new { @class = "font-monospace" })
+                            @Html.ValidationMessageFor(row => row.Password)
+                        </div>
+
+                        <div class="margin-left pt-1">
+                            <button type="submit" class="btn btn-outline-dark w-50">Log In</button>
+                        </div>
+                    </div>
+
+
+                        <div class="text-center font-monospace">
+                            @Html.ValidationSummary()
+                        </div>
+
+                    }
+                    <div class="mt-2"><a class="link-secondary font-monospace">Recover password</a></div>
+                    <div class="p-2 mt-2"><a class="page-link text-primary font-monospace" href="/account/Register">You Don't Have Account? Let Register!</a></div>
+
+                </div>
+
+            </div>
+        </section>
+        <hr />
+    </div>
+}
+

@@ -1,0 +1,75 @@
+﻿@model MyWebApp.Models.Product
+
+@{
+    ViewBag.Title = Model.ProductName;
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<style>
+   
+</style>
+
+@section detail
+{
+    <hr />
+    <div class="container mt-5">
+        @*<section class="">
+            <a class="nav-link" href="/home/index">@Model.Category1.CategoryName</a><span>@Model.ProductName</span>
+            <hr />
+        </section>*@
+        @*<form method="post" action="/Shopping/AddToCart/id=@Model.ProductID">
+            <input type="hidden" name="CumtomerID" value="@User.Identity.Name" />
+            <input type="hidden" name="ProductID" value="@Model.ProductID" />
+            <input type="hidden" name="Quantity" value="1" />
+            <input type="hidden" name="Total" value="@Model.Price" />*@
+
+            <div class="row">
+                <div class="col-4 hover-effect border-left">
+                    <img src="~/Img/@Model.ImgUrl" alt="this is product" style="width:100%" />
+                </div>
+                <div class="col-4">
+                    <p class="fw-bolder fs-3 font-monospace">@Model.ProductName</p>
+                    <p class="text-start font-monospace fw-bold">Price: @Model.Price.000 VND</p>
+
+                    <div class="form-select-sm font-monospace mb-1">
+                        <div class="">Size: OverSize</div>
+                    </div>
+
+                    <p class="font-monospace border p-1">@Model.Description</p>
+                    <a href="/shoppingcart/addtocart/@Model.ProductID" class="btn btn-outline-dark font-monospace">Add To Cart</a>
+                </div>
+                <div class="col-4  border">
+                    <p class="font-monospace">
+                        ► Giao hàng:
+
+                        Giao hàng miễn phí khi mua qua website.
+                        Đơn hàng có giá trị từ 280.000.
+                    </p>
+                    <p class="font-monospace">
+                        ► Bảo hành:
+                        Hỗ trợ tận tình đổi sản phẩm nếu bị lỗi của nhà sản xuất
+                        Hoặc mua nhầm size một cách nhanh chóng.
+                    </p>
+
+                    <p class="font-monospace">
+                        ► Thanh toán:
+                        Thanh toán bằng MOMO, chuyển khoản hoặc thanh toán khi nhận hàng.
+
+                    </p>
+
+                    <p class="font-monospace">
+                        ► Sản phẩm:
+                        Thiết kế riêng biệt, tiêu chuẩn xuất khẩu.
+                        Chính hãng, được đăng ký và bảo hộ nhãn hiệu độc quyền.
+
+                    </p>
+
+
+
+
+                </div>
+            </div>
+        @*</form>*@
+    </div>  
+    <hr />
+}
+

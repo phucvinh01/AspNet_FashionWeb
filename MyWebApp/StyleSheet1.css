@@ -1,0 +1,82 @@
+﻿body {
+}
+.wh {
+    width: 200px;
+    height: 290px;
+}
+
+.text-overlow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.heightMaxImg {
+    height: 150px;
+}
+
+.fs-13px {
+    font-size: 13px;
+}
+
+.fs-12px {
+    font-size: 12px;
+}
+
+.element {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.border-none {
+    border: none;
+}
+
+.card-hover:hover {
+    box-shadow: 0px 0px 3px 3px;
+}
+.border-none {
+    border: none;
+}
+
+.main {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.border-right {
+    border-right: 2px solid black;
+}
+* {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid black;
+}
+
+.card {
+    border: none;
+}
+.field-validation-error {
+    color: red;
+}
+.edit-postion {
+    position: absolute;
+    right: 9%;
+}
+.hover-effect:hover {
+    box-shadow: 2px 2px 2px 2px gray;
+    padding: 10px;
+    transition: ease-in 0.3s;
+}
+
+.border-left {
+    border-left: 1px solid #808080;
+}
+.modal-backdrop.show {
+    opacity: 1;
+}

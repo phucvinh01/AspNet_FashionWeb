@@ -1,0 +1,124 @@
+﻿@model MyWebApp.ViewModelShopping.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<style>
+    th,tr,td,div{
+        font-family:monospace;
+    }
+    
+</style>
+
+<script src="~/Scripts/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+    $(function () {
+   
+        $(".RemoveLink").click(function () {
+ 
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+    
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                      
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+    });
+</script>
+<div class="container pt-3">
+    <h3 class="font-monospace  text-center">
+        <strong>My Cart</strong>
+    </h3>
+    @if (Model.CartItems.Count == 0)
+    {
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center">
+
+                <img src="https://elearningdom.com/wp-content/themes/mrtailor/images/empty_cart.png" alt="this is empty cart" class="img-fluid" />
+                <p class="font-monospace">your cart is empty!! </p>
+                <a href="/category/all" class="btn btn-dark">Shopping Now!</a>
+
+            </div>
+            <div class="col-4"></div>
+
+
+        </div>
+    }
+    else
+    {
+        <div id="update-message">
+        </div>
+        <table class="table table-bordered text-center">
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Total
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.CartItems)
+            {
+        <tr id="row-@item.RecordID">
+            <td class="d-flex">
+                <div><img src="~/Img/@item.Product.ImgUrl" class="img-fluid w-50 p-0" /></div>
+                <div class="p-0">@item.Product.ProductName</div>
+            </td>
+
+            <td id="item-count-@item.RecordID">
+                @item.Count
+            </td>
+            <td>
+                @item.Product.Price.000 VND
+            </td>
+            <td>
+                <a href="#" class="RemoveLink btn-close"
+                   data-id="@item.RecordID">
+                </a>
+            </td>
+        </tr>
+            }
+
+        </table>
+
+        <div class="border " id="cart-total">SubTotal:  @Model.CartTotal</div>
+        <div><a href="/category/all" class="btn btn-outline-dark mt-2">Back to shopping </a></div>
+        <div class="row pt-5">
+            <div class="col-4"></div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-4"><a class="btn btn-outline-dark w-100" href="/checkout/Addressandpayment/?name=@User.Identity.Name"> Check Out</a></div>
+
+            }
+            else
+            {
+                <div class="col-4"><a class="btn btn-outline-dark w-100" href="/Account/Login"> Check Out</a></div>
+            }
+
+
+            <div class="col-4"></div>
+
+        </div>
+    }
+    <div><a href="/category/all">Back to shopping </a></div>
+
+</div>
+
+

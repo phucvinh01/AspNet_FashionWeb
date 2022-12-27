@@ -1,0 +1,29 @@
+﻿@model List<MyWebApp.Identity.AppUser>
+
+@{
+    ViewBag.Title = "getCustommers";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+
+<div class="container">
+    <table class="table table-bordered table-hover" >
+        <tr>
+            <td>UserName</td>
+            <td>PhoneNumber</td>
+            <td>Email</td>
+            <td>BirthDay</td>
+            <td>Address</td>
+        </tr>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                    <td>@item.BirthDay</td>
+                    <td>@item.Address</td>
+                </tr>
+            }
+    </table>
+</div>
+

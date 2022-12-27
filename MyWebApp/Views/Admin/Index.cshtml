@@ -1,0 +1,87 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<MyWebApp.Models.Product>
+
+@{
+    ViewBag.Title = "Page of Admin";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+<style>
+</style>
+
+
+@section Insert{
+
+    <div class="col-9 mt-1 ">
+        @*<div id="alert"  class="alert">
+                <div class="border-2 container">
+                    <p class="fw-bolder">Are You Surr?~</p>
+                    <div class="d-flex container justify-content-between"`>
+                        <a class="btn btn-success ">YES</a>
+                        <a class="btn btn-danger">NO!!</a>
+                    </div>
+                </div>
+            </div>*@
+        <div class="container-fluid text-end">
+            <a class="btn btn-outline-dark btn-sm" href="/admin/insert">Insert New Product</a>
+
+        </div>
+        <div class="container-fluid m-1">
+            <div class="d-flex row p-2">
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-3 mb-2">
+                        <div class="card nav-link text-center wh card-hover">
+                            <a class="card nav-link" href="/product/detailstring/@item.ProductID">
+                                <img src="~/Img/@item.ImgUrl" class="card-img-top heightMaxImg" alt="cap1">
+                                <div class="card-body">
+                                    <p class="element fs-13px">@item.ProductName</p>
+                                    <p class="text-muted fs-12px"><span>@item.Price</span>.000 VND</p>
+                                </div>
+                            </a>
+                            <div class="p-0 d-inline-flex pb-2 justify-content-between">
+                                <a onclick="myFunction()" class="text-success nav-link p-1 btn" href="/admin/edit/@item.ProductID">Edit</a>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="p-1 border-0 btn btn-outline-danger">Delete</button>
+
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Insert</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <p>Are You Sure</p>
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a class="btn btn-primary" href="/admin/delete/@item.ProductID">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <ul class="pagination justify-content-center mt-3">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="/admin/index/?page=@i">@i</a>
+                    </li>
+
+                }
+            </ul>
+        </div>
+    </div>
+    
+    
+    }

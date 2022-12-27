@@ -1,0 +1,60 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<MyWebApp.Models.Product>
+@{
+    ViewBag.Title = "Bottoms";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+
+
+<div class="col-9 mt-1 ">
+    @*<div id="alert"  class="alert">
+            <div class="border-2 container">
+                <p class="fw-bolder">Are You Surr?~</p>
+                <div class="d-flex container justify-content-between"`>
+                    <a class="btn btn-success ">YES</a>
+                    <a class="btn btn-danger">NO!!</a>
+                </div>
+            </div>
+        </div>*@
+    <div class="container-fluid text-end">
+        <a class="btn btn-outline-dark btn-sm" href="/admin/insert">Insert New Product</a>
+
+    </div>
+    <div class="container-fluid m-1">
+        <div class="d-flex row p-2">
+
+            @foreach (var item in Model)
+            {
+
+                <div class="col-3 mb-2">
+                    <div class="card nav-link text-center wh card-hover">
+                        <a class="card nav-link" href="/product/detailstring/@item.ProductID">
+                            <img src="~/Img/@item.ImgUrl" class="card-img-top heightMaxImg" alt="cap1">
+                            <div class="card-body">
+                                <p class="element fs-13px">@item.ProductName</p>
+                                <p class="text-muted fs-12px"><span>@item.Price</span>.000 VND</p>
+                            </div>
+                        </a>
+                        <div class="p-0 d-inline-flex pb-2 justify-content-between">
+                            <a onclick="myFunction()" class="text-success nav-link p-1 btn" href="/admin/edit/@item.ProductID">Edit</a>
+                            <a href="/admin/delete/@item.ProductID" class="text-danger nav-link p-1">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <ul class="pagination justify-content-center mt-3">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/admin/Bottoms/?page=@i">@i</a>
+                </li>
+
+            }
+        </ul>
+    </div>
+</div>
+
+
+

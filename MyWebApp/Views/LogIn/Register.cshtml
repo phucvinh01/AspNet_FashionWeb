@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@section reg
+{
+    <section style=" padding-top:110px ; padding-bottom:110px" class="text-center bg-light">
+
+        <h2 class="font-monospace text-center">Register</h2>
+        <div class="container mt-2 d-flex">
+
+            <form method="post" action="/login/AddNewCustomer" class="form-control-sm w-75 m-auto">
+                <div class="row ">
+                    <div class="col-6">
+                        <div class="form-floating mb-2">
+                            <input type="text" name="CusName" id="CusName" class="form-control p-1" placeholder="FullName" />
+                            <label for="CusName" class="font-monospace">FullName</label>
+                           
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" name="CusPhone" id="CusPhone" class="form-control" placeholder="Number Phone"/>
+                            <label for="CusName" class="font-monospace">Number Phone</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" name="CusAddress" id="CusAddress" class="form-control" placeholder="Address"/>
+                            <label for="CusAddress" class="font-monospace">Address</label>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-2">
+                            <input type="email" name="CusEmail" id="Cus" class="form-control" placeholder="Email"/>
+                            <label for="CusEmail" class="font-monospace">Email</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" name="CusAccount" id="CusAccount" class="form-control" placeholder="UserName"/>
+                            <label for="CusAccount" class="font-monospace">UserName</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="password" name="CusPassword" id="CusPassword" class="form-control" placeholder="Password" />
+                            <label for="CusPassword" class="font-monospace">Password</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-success w-50" type="submit">Regirter</button>
+            </form>
+        </div>
+
+    </section>
+    
+
+}
+

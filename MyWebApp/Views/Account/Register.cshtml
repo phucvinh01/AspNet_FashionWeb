@@ -1,0 +1,97 @@
+﻿@model MyWebApp.ViewModel.RegisterVM
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+    .center-item{
+        display:flow-root;
+        margin:auto;
+    }
+    .margin-left{
+        margin-left:170px;
+    }
+</style>
+
+<div class="container ">
+    <hr />
+    <div class="row">
+        <h4 class="fw-bolder  font-monospace col-11">Create You Account</h4>
+        <a href="/home/index" class="btn btn-close fw-bolder col-1"></a>
+    </div>
+    <section >
+        <div class="center-item mt-2">
+            <div class="border p-3 w-50 center-item shadow">
+                @using (Html.BeginForm("AddNewAccount", "Account", FormMethod.Post))
+                {
+                    <div>
+
+                        <div class="form-floating mb-3 mt-3">
+
+                            @Html.TextBoxFor(row => row.UserName, new { placeholder = "UserName", @class = "form-control ; font-monospace" })
+                            @Html.LabelFor(row => row.UserName, new { @class = "font-monospace" })
+                            @Html.ValidationMessageFor(row => row.UserName)
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.Password, new { placeholder = "Password", @class = "form-control  ; font-monospace", type = "password" })
+                            @Html.LabelFor(row => row.Password, new { @class = "font-monospace" })
+                            @Html.ValidationMessageFor(row => row.Password)
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.ConfrimPassword, new { placeholder = "ConfrimPassword", @class = "form-control  ; font-monospace", type = "password" })
+                            @Html.ValidationMessageFor(row => row.ConfrimPassword)
+                            @Html.LabelFor(row => row.ConfrimPassword, new { @class = "font-monospace" })
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.Mobile, new { placeholder = "Mobile", @class = "form-control  ; font-monospace" })
+                      
+                            @Html.LabelFor(row => row.Mobile, new { @class = "font-monospace" })
+                        </div>
+
+
+
+
+                        <div class="form-floating mb-3 mt-3">
+
+                            @Html.TextBoxFor(row => row.Email, new { placeholder = "Email", @class = "form-control  ; font-monospace" })
+                            @Html.ValidationMessageFor(row => row.Email)
+                            @Html.LabelFor(row => row.Email, new { @class = "font-monospace" })
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.Email, new { placeholder = "Date Of Birth", @class = "form-control  ; font-monospace", type = "date" })
+                       
+                            @Html.LabelFor(row => row.DateOfBirth, new { @class = "font-monospace" })
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.Address, new { placeholder = "Address", @class = "form-control  ; font-monospace" })
+                       
+                            @Html.LabelFor(row => row.Address, new { @class = "font-monospace" })
+                        </div>
+                        <div class="form-floating mb-3">
+
+                            @Html.TextBoxFor(row => row.City, new { placeholder = "City", @class = "form-control  ; font-monospace" })
+                          
+                            @Html.LabelFor(row => row.City, new { @class = "font-monospace" })
+                        </div>
+
+                        <div class="margin-left">
+                            <button type="submit" class="btn btn-outline-dark w-50">Register</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>
+<hr />
+

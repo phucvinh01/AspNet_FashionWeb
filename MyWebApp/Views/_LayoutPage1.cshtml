@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <style>
+          
+      
+
+    </style>
+</head>
+<body>
+    <div class="p-0 bg-white sticky-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <a href="/home"><img src="~/Img/2eb1ee3d9435526b0b24.jpg" alt="this is logo" style="width:140px" /></a>
+                </div>
+                <div class="col-4">
+                    <form class="d-flex mt-3 p-0" role="search" method="post" action="/category/search">
+                        <input class="form-control bg-light" type="search" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-group font-monospace " type="submit"><i class="fa fa-search p-1" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <div class="col-4 navbar navbar-expand justify-content-end navbarnav" >
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link font-monospace  p-2 fs-5  position-relative" href="/account/profile/?name=@User.Identity.Name">Hello @User.Identity.Name</a>
+                                <a class="nav-link font-monospace position-absolute" href="/account/logout"><i class="fa fa-power-off" aria-hidden="true"></i> Log Out</a>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link font-monospace" aria-current="page" href="/account/login"><i class="fa fa-user-o p-2 fs-3" aria-hidden="true"></i></a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item fw-bold ">
+                                <a class="nav-link font-monospace" href="/admin/index"><i class="p-2 fs-3" aria-hidden="true">Admin Page</i></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item fw-bold ">
+                                <a class="nav-link font-monospace" href="/shoppingcart/index"><i class="fa fa-shopping-cart p-2 fs-3" aria-hidden="true"></i></a>
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="container-sm">
+                <ul class="nav justify-content-center font-monospace ">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" aria-current="page" href="/home/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="/category/all">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="/category/tops">Tops</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="/category/Outerwear">Outerwear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="/category/bottoms">Bottoms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="/category/accessories">Accessories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold font-monospace" href="#">Sale</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+       
+    </div>
+
+    <div style="min-height:550px">
+        @RenderSection("main", required: false)
+        @RenderBody()
+        @RenderSection("detail", required: false)
+        @RenderSection("all", required: false)
+        @RenderSection("account", required: false)
+        @RenderSection("reg", required: false)
+    </div>
+    
+        <div class="sticky-bottom bg-white">
+            <div class="container-fluid ">
+                <div class="row">
+                    <div class="col-4 navbar navbar-expand justify-content-start">
+                        <ul class="navbar-nav">
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link font-monospace" href="/home/aboutme">About ME</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-4 navbar navbar-expand justify-content-center">
+                        <label class="font-monospace">2001200636-NguyenPhucVinh-2022</label>
+                    </div>
+                    <div class="col-4 navbar navbar-expand justify-content-end">
+                        <ul class="navbar-nav">
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link font-monospace" aria-current="page" href="https://www.facebook.com/viinnh02" target="_blank">Facebook</a>
+                            </li>
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link font-monospace" href="https://www.instagram.com/viinh_0/" target="_blank">Instagram</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+   
+    
+</body>
+</html>

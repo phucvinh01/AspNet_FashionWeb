@@ -1,0 +1,54 @@
+﻿@model MyWebApp.Models.Product
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/_LayoutPage2.cshtml";
+}
+
+<style>
+    
+   
+</style>
+
+
+@section insertnewproduct{
+    
+    <div class="container col-8">
+        <section style="margin-top:100px ;margin-bottom:150px">
+            <div class="row">
+
+                <div class="d-inline-flex justify-content-between">
+                    <h4 class="fw-bolder  font-monospace">Insert New Product</h4>
+                    <a href="/admin/index" class="btn btn-close fw-bolder"></a>
+                </div>
+
+                @using (Html.BeginForm("insertnewproduct", "admin", FormMethod.Post, new { enctype = "multipart/dorm-data" }))
+                {
+                    <div class="form-floating mb-3">
+                       @Html.TextBoxFor(row => row.ProductName, new {@class ="form-control", placeholder ="ProductName"  })
+                       @Html.LabelFor(row => row.ProductName, "ProductName")
+                        @Html.ValidationMessageFor(row => row.ProductName)
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.TextBoxFor(row => row.Price, new { @class = "form-control", placeholder = "Price" })
+                        @Html.LabelFor(row => row.Price, "Price")
+                        @Html.ValidationMessageFor(row => row.Price)
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.TextAreaFor(row => row.Description, new { @class = "form-control", placeholder = "Description" })
+                        @Html.LabelFor(row => row.Description, "Description")
+                    </div>
+                    <div class="mb-3">
+
+                        @Html.DropDownListFor(row => row.CategoryID, new SelectList(ViewBag.Cate,"CategoryID","CategoryName"),"Category",new {@class ="form-control" })                      
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="file" class="form-control" name="ImgUrl">
+                        <label for="Image" class="font-monospace">Image</label>
+                    </div>
+                    <button class="form-control mt-2 btn btn-secondary font-monospace" type="submit">Insert</button>
+                }
+            </div>           
+        </section>
+    </div>    
+    }
+
